@@ -1,6 +1,5 @@
 #ifndef STDFN_H
 #define STDFN_H
-#include "stdfn.c"
 int intro(char name[30], char author[40], int year, char license[10]);
 int askInt(char question[200]);
 char *askChar(char *question);
