@@ -61,7 +61,7 @@ char* request(char* user_agent, char* url)
 		{
 			printf("%s\n", s.ptr);
 			response = s.ptr;
-    		free(s.ptr);
+			free(s.ptr);
 		}
 
 		/* always cleanup */
