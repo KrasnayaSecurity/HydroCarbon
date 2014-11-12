@@ -42,14 +42,14 @@ char* request(char* user_agent, char* url)
 	curl = curl_easy_init();
 	if(curl) {
 		struct string s;
-    	init_string(&s);
+		init_string(&s);
 
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		/* example.com is redirected, so we tell libcurl to follow redirection */
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
 		curl_easy_setopt(curl, CURLOPT_USERAGENT, user_agent);
-    	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
 
 		/* Perform the request, res will get the return code */
 		res = curl_easy_perform(curl);
