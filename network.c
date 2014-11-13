@@ -3,6 +3,7 @@
 #include <string.h>
 #include <curl/curl.h>
 
+// From an example at StackOverflow
 struct string {// Code needed for operation of the request function
 	char *ptr;
 	size_t len;
@@ -30,7 +31,7 @@ size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s)
   	return size*nmemb;
 }//---------------------------------------------------------------
 
-char* request(char* user_agent, char* url)
+char* request(char* user_agent, char* url) // Based on an example from curl.haxx.se
 {
 	char* response = "value";
 	CURL *curl;
