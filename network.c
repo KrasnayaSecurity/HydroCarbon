@@ -58,3 +58,33 @@ char* request(char* user_agent, char* url) // Based on an example from curl.haxx
 	}
 	return response;
 }
+
+char* request_post(char* user_agent, char* url, char* post) // Based on an example from curl.haxx.se
+{
+	char* response = "value";
+	CURL *curl;
+	CURLcode res;
+	curl = curl_easy_init();
+	if(curl) {
+		struct string s;
+		init_string(&s);
+		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+		curl_easy_setopt(curl, CURLOPT_USERAGENT, user_agent);
+		curl_easy_setopt(curl, CURLOPT_POST, 1);
+		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+		res = curl_easy_perform(curl);
+		if(res != CURLE_OK)
+			fprintf(stderr, "curl_easy_perform() failed: %s\n",
+				curl_easy_strerror(res));
+		else
+		{
+			response = s.ptr;
+			free(s.ptr);
+		}
+		curl_easy_cleanup(curl);
+	}
+	return response;
+}
